@@ -2,7 +2,6 @@ services:
   - type: web
     name: RePosture-backend
     env: node
-    plan: free
-    rootDir: ./Backend
-    buildCommand: npm install && ./.render/build.sh
+    rootDir: Backend
+    buildCommand: npm install
     startCommand: node app.js
