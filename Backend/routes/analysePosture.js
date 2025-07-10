@@ -18,7 +18,7 @@ router.post('/', upload.single('video'), (req, res) => {
     console.log(videoPath)
 
     // Call the Python script with the video path
-    const pythonProcess = spawn('py', ['./posture.py', videoPath]);
+    const pythonProcess = spawn(process.env.PROJECT_STAGE === 'development'?'py':'python3', ['./posture.py', videoPath]);
 
     let result = '';
 
