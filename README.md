@@ -12,7 +12,7 @@ A full-stack web application that detects bad posture (squat or desk sitting) fr
 ## 🚀 Live Demo
 
 🌐 **Deployed App**: [https://reposture-frontend.onrender.com/](https://reposture-frontend.onrender.com/)  
-🎥 **Demo Video**: [Watch on YouTube](https://youtu.be/example)
+🎥 **Demo Video**: [Watch on Google Drive](https://drive.google.com/file/d/1qphjH8IALcyY8sIygMC1FNKq80Qoe1gg/view)
 
 
 ---
