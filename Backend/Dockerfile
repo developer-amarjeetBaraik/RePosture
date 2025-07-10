@@ -21,7 +21,8 @@ RUN python3 -m venv /opt/venv
 
 # Activate the virtual environment and install Python dependencies
 RUN /opt/venv/bin/pip install --no-cache-dir opencv-python==4.8.1.78 \
-    && /opt/venv/bin/pip install --no-cache-dir mediapipe==0.9.3
+    && /opt/venv/bin/pip install --no-cache-dir mediapipe==0.10.9
+
 
 # Ensure Python commands use venv by default
 ENV PATH="/opt/venv/bin:$PATH"
