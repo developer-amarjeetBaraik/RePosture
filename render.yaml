@@ -1,5 +1,5 @@
 services:
-  - type: web service
+  - type: web
     name: RePosture-backend
     env: node
     plan: free
