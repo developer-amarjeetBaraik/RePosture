@@ -1,27 +1,41 @@
-# 🧍 Realfy Bad Posture Detection App
+# 🧍 RePosture Bad Posture Detection App
+
+
+## 👋 Overview
 
 A full-stack web application that detects bad posture (squat or desk sitting) from a user-uploaded or webcam-recorded video using rule-based analysis powered by MediaPipe and OpenCV. Built with **React**, **Node.js**, and a **Python backend** for pose estimation.
+
+🚀 Built for HR technical assessment by **Realfy**.
 
 ---
 
 ## 🚀 Live Demo
 
-🌐 **Deployed App**: [https://realfy-posture.vercel.app](https://realfy-posture.vercel.app)  
+🌐 **Deployed App**: [https://reposture-frontend.onrender.com/](https://reposture-frontend.onrender.com/)  
 🎥 **Demo Video**: [Watch on YouTube](https://youtu.be/example)
+
 
 ---
 
-## 📸 Features
+## 🛠️ Tech Stack
 
-- ✅ Upload or record posture videos (supports webcam)
-- ✅ Analyze posture using rule-based logic (no ML training)
-- ✅ Detect common issues like:
-  - "Back angle < 150°"
-  - "Knee over toe"
-- ✅ Highlights problem points on a canvas overlay as video plays
-- ✅ Frame skipping for faster processing
-- ✅ Handles incorrect videos (non-human, blurry, partial views)
-- ✅ Fully responsive, mobile-friendly UI
+| Layer        | Technology                     |
+|--------------|--------------------------------|
+| Frontend     | React.js, Tailwind CSS         |
+| Backend      | Node.js (Express), Python      |
+| AI/ML        | MediaPipe, OpenCV              |
+| Deployment   | Render (Dockerized)            |
+| Storage      | Local + In-memory              |
+
+---
+
+## 🔍 Key Features
+
+- 🎥 Upload video or record directly from webcam
+- 🧠 Analyze posture using rule-based logic (no ML training)
+- 🖼️ Draw posture issue overlays on canvas synced with video playback
+- ⏯️ Pause video and highlight bad frames with issue points and descriptions
+- 📦 Fully dockerized for deployment on Render
 
 ---
 
@@ -44,123 +58,123 @@ A full-stack web application that detects bad posture (squat or desk sitting) fr
    - Confidence threshold filtering
    - Required landmarks visibility check
    - Frame skipping (every Nth frame)
-   - Returns JSON with issues, coordinates, frame numbers
+   - Returns JSON with issues, coordinates, timestamps numbers
 
 ---
 
-## 📂 Project Structure
+## 📁 Project Structure
 
 ```
-📦 Realfy-Posture-Detection-App
-├── frontend/              # React App (Vite)
-│   ├── components/        # Upload, Webcam, Report, Overlay
-│   └── store/             # Context store for shared state
-├── backend/               # Node.js API server
-│   ├── routes/
-│   └── analyze.py         # Python script for MediaPipe + OpenCV
+/Backend
+├── posture.py                # Logic to detect bad posture using MediaPipe
+├── app.js                    # App entry point
+├── Dockerfile                # Combined Node + Python Dockerfile
+├── requirements.txt          # Requirements file for python
+├── routes/
+│   └── analysePosture.js     # Node.js to Python subprocess handler
+├── uploads/                  # Temporary video storage
+├── venv/                     # Virtual environment for pyton
+
+/frontend
+├── src/
+│   └── components/
+│     └── Footer.jsx
+│     ├── PageNotFound.jsx
+│     ├── Report.jsx
+│     ├── UploadedVideoAndCanvasOverlay.jsx
+│     ├── VideoUploadFromSystem.jsx
+│     ├── WebcamRecorder.jsx
+│     └── utils/
+│       ├── AnalyzingSteps.jsx
+│       ├── RecordingIndicator.jsx
+│
+├── pages/
+│   └── Home.jsx
+├── servives/
+│   └── seekVideoTimelineAt.js
+├── store/
+│   └── AnalysisReportStore.jsx
+├── main.jsx
+├── index.html
+
+/render.yaml                 # Render deployment config
+/README.md                   # Readme file
 ```
 
 ---
 
-## ⚙️ Tech Stack
+## 🚀 How to Run Locally
 
-### Frontend
-- React (with Context API)
-- Tailwind CSS (customized styling)
-- HTML5 Canvas (for overlay drawing)
-- Webcam.js (for live recording)
-
-### Backend
-- Node.js + Express
-- `child_process` to run Python scripts
-
-### Python (Analysis Engine)
-- `mediapipe` for pose detection
-- `opencv-python` for video frame processing
-- `math`, `json`, `sys` for geometry and comms
-
----
-
-## 📦 Setup Instructions
-
-### 1. Clone the Repo
+1. **Clone repo**
 
 ```bash
-git clone https://github.com/your-username/realfy-posture-app.git
-cd realfy-posture-app
+git clone https://github.com/developer-amarjeetBaraik/RePosture.git
+cd reposture
 ```
 
----
-
-### 2. Frontend Setup (React + Vite)
+2. **Install Frontend**
 
 ```bash
 cd frontend
 npm install
-npm run dev
+npm start
 ```
 
----
-
-### 3. Backend Setup (Node.js + Python)
+3. **Install Backend Dependencies**
 
 ```bash
-cd backend
-npm install
-```
-
-#### Create a virtual environment (recommended)
-
-```bash
+cd ../Backend
 python -m venv venv
-venv\Scripts\activate  # Windows
-source venv/bin/activate  # Linux/Mac
+source venv/bin/activate  # or venv\Scripts\activate on Windows
 pip install -r requirements.txt
+node app.js
 ```
 
-Add this to `requirements.txt`:
+4. **Environment Variables**
+
+Create `.env` in `/Backend` and add:
+
 ```
-mediapipe
-opencv-python
-```
-
----
-
-### 4. Environment Variables
-
-Add `.env` in `/backend` if needed (optional):
-```env
-PORT=5000
-FRONTEND_URL= https://localhost:5173
+PORT = 3000
+NODE_ENV = devlopment        #it can be development, testing, production
+PYTHON_PATH=python3
+FRONTEND_URL = https://reposture-frontend.onrender.com/ (in my case)
 ```
 
 ---
 
-### 5. Start Backend
+## 🐳 Deploy `/Backend` on Render
 
-```bash
-cd backend
-node index.js
-```
+### 1. Render Settings
+
+- **Type**: Web Service
+- **Runtime**: Docker
+- **Root directory**: `Backend`
+
+### 2. Add Environment Variables
+
+| Key           | Value     |
+|---------------|-----------|
+| PORT          | 5000      |
+| NODE_ENV      | production|
+| PYTHON_PATH   | python3   |
+| FRONTEND_UR   | https://reposture-frontend.onrender.com/ (in my case)|
+
+### 3. Files Required
+
+- `Dockerfile` (in `/Backend` root)
+- `render.yaml` (in project root)
 
 ---
 
-## 📤 API Usage
+## 🧪 Dummy Test Response (for frontend testing)
 
-### POST `/analyze`
-
-- **Body**: `multipart/form-data` with video file
-- **Response**:
 ```json
 {
   "status": "success",
   "bad_postures": [
-    {
-      "frame": 15,
-      "issue": "Knee over toe",
-      "x": 360,
-      "y": 540
-    }
+    { "timestamps": 1.10, "issue": "Knee ver toe", "point": [330, 440] },
+    { "timestamps": 4.22, "issue": "Back angle < 150°", "point": [320, 420] }
   ]
 }
 ```
@@ -188,19 +202,15 @@ node index.js
 
 ---
 
-## 👤 Developer Info
 
-Built by [**Amarjeet Baraik**](https://amarjeetbaraik.dev)
+## 👨‍💻 Developer Info
 
-📫 Contact Me:  
-[🌐 Portfolio](https://amarjeetbaraik.dev)  
-[🐙 GitHub](https://github.com/amarjeetbaraik)  
-[💼 LinkedIn](https://linkedin.com/in/amarjeetbaraik)  
-📧 amarjeetbaraikweb@gmail.com  
-📷 [Instagram](https://instagram.com/amarjeet.baraik)
+Built with ❤️ by **Amarjeet Baraik**
+
+[🌐 Portfolio](https://portfolio-amarjeet.onrender.com/) | [🐱 GitHub](https://github.com/developer-amarjeetBaraik) | [💼 LinkedIn](https://linkedin.com/in/amarjeet-chik-baraik) | [📧 Email](mailto:amarjeetofficial81@gamil.com) | [📸 Instagram](https://www.instagram.com/amarjeet_baraik_/)
 
 ---
 
-## 📃 License
+## 📜 License
 
-MIT – Feel free to fork, improve and credit. ✨
+This project is for demonstration and educational purposes only.
