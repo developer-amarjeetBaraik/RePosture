@@ -213,4 +213,4 @@ Built with ❤️ by **Amarjeet Baraik**
 
 ## 📜 License
 
-This project is for demonstration and educational purposes only.
+This project is licensed under the [![MIT License](https://img.shields.io/badge/license-MIT-green?style=flat)](./LICENSE).
