@@ -30,7 +30,8 @@ const Report = () => {
                     <p className='mb-1.5 text-[14px] text-blue-500'>(Click on video timestamp to see preview on video player)</p>
                     <ul className="list-disc list-inside text-sm text-gray-200">
                         {analysisResult.map((item, idx) => (
-                            <li key={idx} className='mb-1.5 cursor-pointer' onClick={() => handleIssueClick(item)}><b className='text-blue-500'>@{item.timestamp}</b>: {item.issue}</li>
+                            // <button key={idx} className='mb-1.5 cursor-pointer' onClick={() => handleIssueClick(item)}><b className='text-blue-500'>@{item.timestamp}</b>: {item.issue}</button>
+                            <li><button key={idx} className='mb-1.5 cursor-pointer' onClick={() => handleIssueClick(item)}><b className='text-blue-500'>@{item.timestamp}</b>: {item.issue}</button></li>
                         ))}
                     </ul>
                 </>
