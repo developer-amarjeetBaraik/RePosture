@@ -1,4 +1,5 @@
 import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 import sys
@@ -10,7 +11,13 @@ import json
 video_path = sys.argv[1]
 
 mp_pose = mp.solutions.pose
-pose = mp_pose.Pose(static_image_mode=False, min_detection_confidence=0.5)
+pose = mp_pose.Pose(
+    static_image_mode=False,
+    min_detection_confidence=0.5,
+    model_complexity=1,  # You can keep this if needed
+    enable_segmentation=False
+)
+
 mp_drawing = mp.solutions.drawing_utils
 
 def calculate_angle(a, b, c):
