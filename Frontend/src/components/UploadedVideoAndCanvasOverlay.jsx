@@ -103,19 +103,19 @@ const UploadedVideoAndCanvasOverlay = () => {
              * @returns The video element with the video file and analysis result if available.
              */}
             {videoFile && (
-                <div className="relative w-full aspect-video rounded overflow-hidden border border-white shadow-lg">
+                <div className="relative flex flex-col justify-center items-center aspect-video rounded overflow-hidden border border-white shadow-lg">
                     <video
                         id="video"
                         ref={videoRef}
                         src={URL.createObjectURL(videoFile)}
-                        className="w-full h-full relative z-10"
+                        className="relative z-10"
                         controls
                     />
                     {analysisResult && (
                         <canvas
                             id="canvas"
                             ref={canvasRef}
-                            className="absolute top-0 left-0 w-full h-full pointer-events-none z-20"
+                            className="absolute top-0 left-0 pointer-events-none z-20"
                         />
                     )}
                 </div>
