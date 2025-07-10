@@ -3,5 +3,7 @@ services:
     name: RePosture-backend
     env: node
     rootDir: Backend
-    buildCommand: npm install
+    buildCommand: |
+      npm install
+      pip install -r Backend/requirements.txt
     startCommand: node app.js
