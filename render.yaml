@@ -1,9 +1,14 @@
-services:
+    services:
   - type: web
     name: RePosture-backend
-    env: node
-    rootDir: Backend
-    buildCommand: |
-      npm install
-      pip install -r ./requirements.txt
-    startCommand: node app.js
+    env: docker
+    repo: https://github.com/developer-amarjeetBaraik/RePosture
+    dockerfilePath: Backend/Dockerfile
+    buildFilter:
+      paths:
+        - Backend/**
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
